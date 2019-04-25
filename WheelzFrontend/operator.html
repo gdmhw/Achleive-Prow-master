@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.00, maximum-scale=2.00, minimum-scale=1.00">
+    <title>Wheelz</title>
+    <meta name="author" content="Achleive Prow">
+    <meta name="description" content="bike share system">
+    <meta name="keywords" content="bikes, travel">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+      <script type="text/javascript" src="scripts/available.js"></script>
+    <script type="text/javascript" src="scripts/googleMain.js"></script>
+    <script type="text/javascript" src="scripts/dockSelect.js"></script>
+    <script type="text/javascript" src="scripts/frontend.js"></script>
+
+
+
+
+    <!-- JSPDF SCRIPTS-->
+    <script type="text/javascript" src="scripts/jspdf.min.js"></script>
+    <script type="text/javascript" src="scripts/generate.js"></script>
+    <!--<script src="https://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>-->
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+<!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body onload="onload();availableStats();">
+
+
+    <header>
+
+            <img src="img/logo_transparent.png" alt="logo" class="center"/>
+
+    </header>
+
+    <div class="row">
+
+      <div class="column left" style="background-color:white;">
+      </div>
+
+<!-- main column starts here -->
+      <div class="column middlex" style="background-color:#c6f1e7;">
+  <!-- Nav Bar -->
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="book.html">Booking</a></li>
+          <li><a href="support.html">Get Support</a></li>
+          <li id="op" class="hide"><a href="operator.html">Operator</a></li>
+          <li id="man" class="hide"><a href="management.html">Management Portal</a></li>
+          <li style="float:right;"><a href="login.html" id="login">Login</a></li>
+
+        </ul>
+
+
+<!-- operator section starts here -->
+          <h3>Operator</h3>
+          <div class="operator-no">
+            <div id="containerdiv">
+              <div id="map"></div>
+              <div id="legend"><h3>Legend</h3></div>
+            </div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACiXMw6_lBO0vBNnBnNMOygia46o1Qvpw&callback=initMap">
+            </script>
+            <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+            </script>
+
+
+
+<!--
+            <div id="testdiv">
+              <div class="hidden" style="display:none">
+                TEST
+
+              </div>
+
+            </div>
+-->
+            <div class="operator_mod">
+                <h3 id="not_operator">Dock Management Panel</h3>
+                <div class="dock_controler">
+                  <div class="dock_selector">
+                    <h3>Dock Selector</h3>
+                     <form>
+                      <select class="dock_choose" name='DockSelect' id="choose" onchange="dockSelect()" >
+                        <option value='0'selected disabled="disabled">Dock List</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                        <option value='11'>11</option>
+                        <option value='12'>12</option>
+                        <option value='13'>13</option>
+                        <option value='14'>14</option>
+                        <option value='15'>15</option>
+                        <option value='16'>16</option>
+                        <option value='17'>17</option>
+                        <option value='18'>18</option>
+                        <option value='19'>19</option>
+                        <option value='20'>20</option>
+                      </select>
+                     </form>
+
+
+
+                  </div>
+
+
+
+
+                  <div class="dock_info">
+                    <h3 id="dockID">Dock Info Panel</h3>
+                    <div class="dock_information">
+                      <div class="dock_div">
+                        <div class="dock_bikes">
+                          <div class="used_stuff">
+                            <p id="standard-bikes-count">Standard Bikes: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "mountain-bikes-count">Mountain Bikes: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "road-bikes-count">Road Bikes: ?</p>
+                          </div>
+                          <br>
+                          <div class="used_stuff">
+                            <p id = "defective-bikes-count">Defective Bikes: ?</p>
+                          </div>
+                        </div>
+                        <div class="dock_gear">
+                          <div class="used_stuff">
+                            <p id = "helmet-count">Helmets: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "elbow-pads-count">Elbow Pads: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "pump-count">Pumps: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "water-bottle-count">Water Bottles: ?</p>
+                          </div>
+                          <div class="used_stuff">
+                            <p id = "knee-guard-count">Knee Guards: ?</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3 id="dockID2">Dock Modifier</h3>
+                    <div class="dock_modification">
+                      <div class="dock_div">
+                        <div class="dock_bikes">
+                <form>    <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Standard:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="standardcount" name="standardcount" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Mountain:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="mountaincount" name="mountaincount" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Road:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="roadcount" name="roadcount" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Fix:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="fixdefective" name="fixdefective" min="0" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuffx">
+                            <input type="submit" id="submitmods" name="submitmods" value="Submit Changes">
+                          </div>
+                        </div>
+                        <div class="dock_gear">
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Helmets:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="helmetmod" name="helmetmod" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Elbow:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="elbowmod" name="elbowmod" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Pumps:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="pumpmod" name="pumpmod" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Bottles:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="bottlemod" name="bottlemod" value="0">
+                            </div>
+                          </div>
+                          <div class="mod_stuff">
+                            <div class="title_element">
+                              <p>Knee:</p>
+                            </div>
+                            <div class="form_element">
+                              <input type="number" id="kneemod" name="kneemod" value="0">
+                            </div>
+                          </div>
+                </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+<div class="change-bike-container">
+
+
+                  <div class="dock_selector" style="margin-top: 10px; display:inline-block; height: auto;
+    width: auto;
+    float: right;">
+                    <div class="">
+
+
+
+                       <form>
+                         <select class="dock_choose" id="type_selector" name="" style="margin-left:0;">
+                           <option value="0" selected disabled>Bike Type</option>
+                           <option value='1'>Standard</option>
+                           <option value='2'>Mountain</option>
+                           <option value='3'>Road</option>
+
+                         </select>
+
+                       </form>
+
+                      <div class="mod_stuff">
+                        <div class="title_element">
+                          <p>Amount:</p>
+                        </div>
+
+                        <div class="form_element dock_choose choose" >
+                          <input type="number" id="type_amount" name="type_amount" value="0">
+                        </div>
+
+
+                      </div>
+
+                      <form>
+                       <select class="dock_choose" name='DockSelect' id="toDock" onchange="" style="margin-left: 0;" >
+                         <option value='0'selected disabled="disabled">Dock to move to:</option>
+                         <option value='1'>1</option>
+                         <option value='2'>2</option>
+                         <option value='3'>3</option>
+                         <option value='4'>4</option>
+                         <option value='5'>5</option>
+                         <option value='6'>6</option>
+                         <option value='7'>7</option>
+                         <option value='8'>8</option>
+                         <option value='9'>9</option>
+                         <option value='10'>10</option>
+                         <option value='11'>11</option>
+                         <option value='12'>12</option>
+                         <option value='13'>13</option>
+                         <option value='14'>14</option>
+                         <option value='15'>15</option>
+                         <option value='16'>16</option>
+                         <option value='17'>17</option>
+                         <option value='18'>18</option>
+                         <option value='19'>19</option>
+                         <option value='20'>20</option>
+                       </select>
+                      </form>
+
+
+
+
+                    </div>
+
+                    <div class="mod_stuffx">
+                      <input type="submit" id="submitbtn" style="margin-top:20px;" name="submitbikes" onclick="moveBikes()" value="Confirm">
+                    </div>
+
+                  </div>
+
+</div>
+
+                  <div class="available_container">
+                    <h3>Available Bikes</h3>
+                    <div class="available_stuff">
+                      <p id="available-standard">Standard Bikes: ?</p>
+                    </div>
+                    <div class="available_stuff">
+                      <p id="available-mountain">Mountain Bikes: ?</p>
+                    </div>
+                      <div class="available_stuff">
+                          <p id="available-road">Road Bikes: ?</p>
+                      </div>
+                      <div class="available_stuff">
+                          <p id="available-defective">Defective Bikes: ?</p>
+                      </div>
+                    <br>
+                  </div>
+
+
+
+                </div>
+
+            </div>
+          </div>
+          </div>
+<!-- operator section ends here -->
+
+
+      <div class="column right" style="background-color:white;">
+
+      </div>
+
+    </div>
+
+
+    <div class="pdf-link-container">
+      <div class="pdf-link-container2">
+        <a href="javascript:genPDF()">Download a PDF of the above data</a>
+
+
+      </div>
+
+      <div style="display:none;">
+        <h3 id ="generated-info" style="color: black; font-family: Arial, sans-serif; font-size: 18px;">Time Generated:</h3>
+
+        <h3 id= "time"  style="color: black; font-family: Arial, sans-serif; font-size: 18px"></h2>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <footer>
+
+      <div class="social" align="center">
+        <a href="#" class="fa fa-facebook"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-twitter"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-google"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-linkedin"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-youtube"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-instagram"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-pinterest"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-android"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-tumblr"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-reddit"style="border-radius:5px;"></a>
+      </div>
+
+    </footer>
+
+
+  </body>
+
+  <script type="text/javascript">
+  var d = new Date();
+  document.getElementById("time").innerHTML = d;
+
+  </script>
+
+</html>

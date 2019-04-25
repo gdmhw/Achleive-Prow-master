@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Documentation</title>
+    <style>
+        h4 {
+            background-color: white;
+            color: black;
+            border: 2px red solid;
+        }
+    </style>
+</head>
+<body>
+<h1>API Documentation</h1>
+<div>
+    <h2>README FIRST</h2>
+    <p>The full url for these endpoints will be our url [https://achleiveprow.tk/],
+        followed by the urls in monospace below
+        <br/> For example: <code>/api/v1/reservations/id/:id</code>  would be  <code>https://achleiveprow.tk/api/v1/reservations/id/5</code> with :id as 5
+        <br />
+        For the inputs, do not include the : before them. Simply replace the :word with your input.
+
+    </p>
+
+    <h2>README SECOND</h2>
+    <p>Some endpoints now require authentication first before any data will be given back, so first login and store the
+        token you are given back as a header under the name "authentication"</p>
+
+</div>
+
+<div>
+    <h2> Example of using fetch </h2>
+    <code>
+        <pre>
+            var authToken = "";
+
+            if (typeof(Storage) !== "undefined") {
+              // If webstorage sessionStorage is allowed.
+                if (!sessionStorage.token) {
+                    // Init a new token in session storage
+                    sessionStorage.token = "";
+                } else {
+                    // Load our token from storage
+                    authToken = sessionStorage.token;
+                }
+            } else {
+              // Not sure of the alt options...
+            }
+
+
+            var url = "https://achleiveprow.tk/api/v1/accounts/login"
+
+            fetch(url, {
+                method: 'post',
+                headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": authToken // <-- var from above, or a string "accesstokenfromlogin" // you want this for any of the authenticated endpoints
+                },
+                body: JSON.stringify({"email": "myemail@mail.com", "password": "mysecretpassword"}) // how to send it data, like html form, "field": "value"
+            }).then(
+                function(response) {
+                    response.json().then(function(data) {
+                        console.log('Request succeeded with JSON response', data);
+                        // in here is where you do your thing with your data you got back from the result
+
+                        if (response.status !== 200) { // you can handle the status codes by checking similar to this
+                            console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                            return;
+                        }
+
+
+                        //For accounts/login/ you want to store the token
+                        //--------------[ start storing token ]----------
+                        if (response.status == 200) {
+                            if (typeof(Storage) !== "undefined") {
+                                sessionStorage.token = data.response.token;
+                                authToken = data.response.token;
+                            }
+                        } else {
+                            //failed to login
+                            console.log(data.response.message);
+                        }
+                        //--------------[ end store token ]--------------
+                    });
+                }
+            ).catch(function(err) {
+                console.log('Fetch Error :-S', err);
+            });
+            </pre>
+    </code>
+
+
+</div>
+
+
+<div>
+    <h2><a name="res">Reservation Endpoints</a></h2>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires Authorization header with login token</h4>
+        <p style="font-family: monospace"><a name="res-id">/api/v1/reservations/id/:resid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;resid is the id number for the reservation<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores all information about the reservation<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires Authorization header with login token</h4>
+        <p style="font-family: monospace"><a name="res-all">/api/v1/reservations/all/:order?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Identifies user from token<br/>
+        &emsp;order [optional] is either desc or asc for ordering by date, by default it will be asc<br/>
+        Function:<br/>
+        &emsp;This returns a json object with all the reservations the logged in user has<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="res-id-gear">/api/v1/reservations/id/:resid/gear</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;resid is the id number for the reservation<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores the gear that has been reserved for this reservation<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="res-id-gear-create">/api/v1/reservations/id/:resid/gear/create</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;resid is the id number for the reservation<br/>
+        Format of <a name="geardata">gear data</a>: <br /><code>let body = {
+            "helmet": 0,
+            "pump": 0,
+            "kneeGuard": 0,
+            "elbowPads": 0,
+            "waterBottle": 0
+            };</code><br />
+        Function:<br/>
+        &emsp;This returns a json object that for each of the above fields stores the result of the gear creation, ie gearID, and if successful<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="res-id-gear-id-cancel">/api/v1/reservations/id/:resid/gear/cancel</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;resid is the id number for the reservation<br/>
+        Format of <a name="geardata">gear data</a>: <br /><code>let body = {
+        "helmet": 0,
+        "pump": 0,
+        "kneeGuard": 0,
+        "elbowPads": 0,
+        "waterBottle": 0
+        };</code><br />
+        Function:<br/>
+        &emsp;This returns a json object that for each of the above fields stores the result of the gear creation, ie gearID, and if successful<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="res-create">/api/v1/reservations/create</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;timeFrom, status ("reserved", "active", "cancelled", "ended")[defaults to reserved], pickupDock, userid if
+        logged in as fields in the form<br/>
+        &emsp;bikeType [optional] is the type of bike requested, either standard, mountain, or road. Defaults to standard<br />
+        &emsp;gear [optional] is an <a href="#geardata">object</a> that contains the fields helmet, pump, kneeGuard, elbowPads, waterBottle. These are either 1 or 0 for yes and no respectively<br />
+        Function:<br/>
+        &emsp;Creates a new reservation and returns the resID and gearReservation as a object with the results for each piece of gear requested.<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="res-modify">/api/v1/reservations/modify</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;bikeID, pickupDock, userID, timeFrom, timeUntil, destination, routeTaken, status, score, feedback [Most should perform as optionals, but I'm not certain]<br/>
+        Function:<br/>
+        &emsp;Modify a reservation<br/>
+        </p>
+    </div>
+
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Authorization required [MUST BE MANAGER TO VIEW]</h4>
+        <p style="font-family: monospace"><a name="res-manage-count">/api/v1/reservations/manage/count/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;period [optional]: (24h/day, week, month, all) are the accepted values, it will default to 24h if period
+        is nothing or invalid <br/>
+        Function:<br/>
+        &emsp;Returns the total count of reservations created during this period<br/>
+        </p>
+    </div>
+
+</div>
+
+<div>
+    <h2><a name="dock">Docks Endpoints</a></h2>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks">/api/v1/docks</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing array of all docks<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-id">/api/v1/docks/id/:dockid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id number for the dock<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores all information about the dock<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-id-bikes">/api/v1/docks/id/:dockid/bikes</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id number for the dock<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores the number of each type of bike that exists at the dock<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-name">/api/v1/docks/name/:dockname</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockname is the text name for a dock. It will try its best to match a dock<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores all information about the dock<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-getbike">/api/v1/docks/getbike/:dockid/:type?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id of the dock you want a bike ID from<br/>
+        &emsp;type [optional] bike type, defaults to standard<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores a single field called bikeID that is not booked for the current day
+        (or has been cancelled/ended [the dock should update on the ending of trips])<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-freebikes">/api/v1/docks/freebikes/:dockid/:type?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id of the dock<br/>
+        &emsp;type [optional (defaults to 'standard')] is the type of bike you want, currently only 'standard', 'mountain', and 'road' work.<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores a two fields called freeBikes, and capacity. This shows the current
+        number of free bikes are available and the total capacity of the dock<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-freereservations">/api/v1/docks/freereservations/:dockid/:year-:month-:day</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id of the dock<br/>
+        &emsp;year is the year formatted as yyyy (MUST be yyyy)<br/>
+        &emsp;month is the month formatted as mm<br/>
+        &emsp;day is the day formatted as dd<br/>
+
+        Example url usage:<br/>
+        <code>&emsp;https://achleiveprow.tk/api/v1/docks/freereservations/5/2019-03-27</code><br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores a two fields called freeReservations, and capacity. This shows the current
+        number of free slots for reservations that are available on the day and the total capacity of the dock for the specified day<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-defective">/api/v1/docks/defective/:dockid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id of the dock<br/>
+        Function:<br/>
+        &emsp;This returns a json object containing the field `defectiveBikes` that will be the number of defective bikes<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="docks-overview">/api/v1/docks/overview/:dockid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;dockid is the id of the dock you want an overview for<br/>
+        Function:<br/>
+        &emsp;This returns a json object ???<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>DEPRECATED (aka broken, avoid use...)</h4>
+        <p style="font-family: monospace"><a name="docks-closest">/api/v1/docks/closest/:lat,:long</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;lat and long are location of the search area (typically the user location)<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores information about near by docks<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>DEPRECATED (aka broken, avoid use...)</h4>
+        <p style="font-family: monospace"><a name="docks-range">/api/v1/docks/range/:lat,:long,:range</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;lat and long are location of the search area (typically the user location), range is typically 0.002 as
+        its directly added/removed to the lat long for quick and less intensive calculations of range<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores information about near by docks within the range<br/>
+        </p>
+    </div>
+</div>
+
+<div>
+    <h2><a name="bike">Bike Endpoints</a></h2>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="bikes">/api/v1/bikes</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing array of all bikes<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="bikes-id">/api/v1/bikes/id/:bikeid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;bikeid is the id number for the bike<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores all information about the bike<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="bikes-type">/api/v1/bikes/type/:type</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;type is an enum with the values ("standard", "road", "mountain") (no quotes)<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores all information about the bike of the specified type<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="bikes-id-faults">/api/v1/bikes/id/:bikeid/faults</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;bikeid is the id number for the bike<br/>
+        Function:<br/>
+        &emsp;This returns a json object that stores information about any faults reported about the specific bike<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="bikes-id-faults-create">/api/v1/bikes/id/:bikeid/faults/create</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;(in url) bikeid is the id number for the bike<br/>
+        &emsp;(in post body) userNotes is a 2000 char field for describing the issue<br/>
+        Function:<br/>
+        &emsp;This returns a json object that responds with the result of creating the fault<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><!--<h4>Requires Operator Authentication</h4>-->
+        <p style="font-family: monospace"><a name="bikes-id-faults-modify">/api/v1/bikes/id/:bikeid/faults/modify</a></p>
+        <p style="font-family: monospace"><a name="bikes-faults-modify">/api/v1/bikes/faults/modify</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;(in url [optional, use other url]) bikeid is the id number for the bike<br/>
+        &emsp;(in post body [optional]) complete is a enum with values 'yes' and 'no' that represent if the fault has been repaired<br/>
+        &emsp;(in post body [optional]) userNotes is a 2000 char field for describing the issue<br/>
+        Function:<br/>
+        &emsp;This returns a json object that responds with the result of creating the fault<br/>
+        </p>
+    </div>
+</div>
+
+
+<div>
+    <h2><a name="account">Account Endpoints</a></h2>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="accounts">/api/v1/accounts/</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing all information about the account associated with the access token<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="accounts-type">/api/v1/accounts/type/</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None - uses token's authentication<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the type of account that the token is linked to<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="accounts-id">/api/v1/accounts/id/:userid</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;userid is the id number for the account<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing all information about the account<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="accounts-create">/api/v1/accounts/create</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;fname: first name of account holder<br/>
+        &emsp;lname: last name of account holder<br/>
+        &emsp;email: email of account holder<br/>
+        &emsp;dob: date of birth<br/>
+        &emsp;type: enum("user", "manager", "operator"), type of account<br/>
+        &emsp;password: the users password for their account<br/>
+        Function:<br/>
+        &emsp;Returns JSON object with the success of creation/login (loginResult and accountResult store the results
+        from the setup queries), a message, and the access token (Save this and use it in your headers under
+        "authorization")<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="accounts-login">/api/v1/accounts/login</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;email: email of account holder<br/>
+        &emsp;password: the users password for their account<br/>
+        Function:<br/>
+        &emsp;Returns JSON object with the success of login, a message, and the access token (Save this and use it in
+        your headers under "authorization")<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p>
+        <p style="font-family: monospace"><a name="accounts-guest">/api/v1/accounts/guest</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;Takes no input<br />
+        Function:<br/>
+        &emsp;Returns JSON object with the success of login, a message, and the access token (Save this and use it in
+        your headers under "authorization")<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication [WARNING NOT FULLY TESTED SO BE CAREFUL]</h4>
+        <p style="font-family: monospace"><a name="accounts-buypass">/api/v1/accounts/buypass</a></p>
+        Method: POST<br/>
+        Inputs:<br/>
+        &emsp;type: (annual, day) are the two options for passes<br/>
+        Function:<br/>
+        &emsp;Returns JSON object with the success of creating a new pass in the system. Passes are automatically
+        activated the same day as purchase, and expiry date calculated<br/>
+        </p>
+    </div>
+
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires Authentication</h4>
+        <p style="font-family: monospace"><a name="accounts-checktoken">/api/v1/accounts/checktoken</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None<br/>
+        Function:<br/>
+        &emsp;Returns JSON object with the token owner's email, expiry time of the token. [Mostly a debug feature]<br/>
+        </p>
+    </div>
+</div>
+
+
+<div>
+    <h2><a name="manage">Manage Endpoints</a></h2>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-bookings">/api/v1/manage/bookings/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Period [optional] - (24h, week, month, all)<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the total count of reservations made in a period<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-aciveusers">/api/v1/manage/activeusers/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Period [optional] - (24h, week, month, all)<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the total number of active users for a period<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-activedock">/api/v1/manage/activedock/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Period [optional] - (24h, week, month, all)<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the most active dock and number of reservations made for a period<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-damagedbikes">/api/v1/manage/damagedbikes</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;None<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the total count of broken bikes currently<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-averagesession">/api/v1/manage/averagesession/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Period [optional] - (24h, week, month, all)<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the average session length over a period<br/>
+        </p>
+    </div>
+    <div style="border: 1px black solid; padding: 1em;">
+        <p><h4>Requires authentication</h4>
+        <p style="font-family: monospace"><a name="manage-earnings">/api/v1/manage/earnings/:period?</a></p>
+        Method: GET<br/>
+        Inputs:<br/>
+        &emsp;Period [optional] - (24h, week, month, all)<br/>
+        Function:<br/>
+        &emsp;Returns JSON object containing the total earnings over a period<br/>
+        </p>
+    </div>
+
+
+</div>
+
+</body>
+</html>

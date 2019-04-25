@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Wheelz</title>
+    <meta name="author" content="Achlieve Prow">
+    <meta name="description" content="bike share system">
+    <meta name="keywords" content="bikes, travel">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="scripts/week.js"></script>
+    <script type="text/javascript" src="scripts/frontend.js"></script>
+
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body onload="onload(allStats)">
+
+    <header>
+
+            <img src="img/logo_transparent.png" alt="logo" class="center"/>
+
+    </header>
+
+    <div class="row">
+
+      <div class="column left" style="background-color:white;">
+      </div>
+
+<!-- main column starts here -->
+      <div class="column middle" style="background-color:#c6f1e7;">
+  <!-- Nav Bar -->
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="book.html">Booking</a></li>
+          <li><a href="support.html">Get Support</a></li>
+          <li id="op" class="hide"><a href="operator.html">Operator</a></li>
+          <li id="man" class="hide"><a href="management.html">Management Portal</a></li>
+          <li style="float:right;"><a href="login.html" id="login">Login</a></li>
+        </ul>
+
+
+<!-- management section starts here -->
+          <h3>Management Portal</h3>
+
+            <div class="management">
+
+<!-- selection of 24/week/alltime -->
+            <div class="controler">
+              <div class="selector">
+                <div class="selection"><a href="management.html">24 Hour</a></div>
+                <div class="selection"><a  class="open_tab" href="week.html">Week</a></div>
+                <div class="selection"><a href="all.html">All Time</a></div>
+              </div>
+            </div>
+<!-- selection ends here -->
+
+              <div class="manage_elements">
+                <div class="manage1">
+                  <div class="man">
+                    <div class="part">Bookings</div>
+                    <div id="totBookingsW" class="stats">?</div>
+                  </div>
+                </div>
+                <div class="manage2">
+                  <div class="man">
+                    <div class="part">Active Users</div>
+                    <div id="usersW" class="stats">?</div>
+                  </div>
+                </div>
+                <div class="manage3">
+                  <div class="man">
+                    <div class="part">Damaged Bikes</div>
+                    <div id="damagedW" class="stats">?</div>
+                  </div>
+                </div>
+              </div>
+              <div class="manage_elements">
+                <div class="manage1">
+                  <div class="man">
+                    <div class="part">Avg Session Duration (hrs)</div>
+                    <div id="sessionW" class="stats">?</div>
+                  </div>
+                </div>
+                <div class="manage2">
+                  <div class="man">
+                    <div class="part">Earnings (£)</div>
+                    <div id="earnW" class="stats">?</div>
+                  </div>
+                </div>
+                <div class="manage3">
+                  <div class="man">
+                    <div class="part">Most Active Dock</div>
+                    <div id="activeW" class="stats">?</div>
+                  </div>
+                </div>
+              </div> <h3 id=not_manager></h3>
+          </div>
+        </div>
+<!-- management section ends here -->
+
+
+      <div class="column right" style="background-color:white;">
+
+      </div>
+
+    </div>
+
+    <footer>
+
+      <div class="social" align="center">
+        <a href="#" class="fa fa-facebook"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-twitter"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-google"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-linkedin"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-youtube"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-instagram"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-pinterest"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-android"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-tumblr"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-reddit"style="border-radius:5px;"></a>
+      </div>
+
+    </footer>
+
+  </body>
+
+</html>

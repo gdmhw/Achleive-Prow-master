@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("#div1").load("demo_test.txt");
+            });
+        });
+    </script>
+    -->
+</head>
+<body>
+<form action="/api/v1/reservations/create/" method="post">
+    bikeID:<br>
+    <input type="number" name="bikeID" value="0-250">
+    <br>
+    userID:<br>
+    <input type="number" name="userID" value="0-50">
+    <br>
+    timeFrom:<br>
+    <input type="datetime-local" name="timeFrom">
+    <br>
+    timeUntil:<br>
+    <input type="datetime-local" name="timeUntil">
+    <br>
+    destination:<br>
+    <input type="number" name="destination" value="0-20">
+    <br>
+    routeTaken:<br>
+    <input type="text" name="routeTaken" value="75char">
+    <br>
+    status:<br>
+    <select name="status">
+        <option value="reserved">reserved</option>
+        <option value="active">active</option>
+        <option value="cancelled">cancelled</option>
+        <option value="ended">ended</option>
+    </select>
+    <br>
+    score:<br>
+    <input type="number" name="score" value="0-5">
+    <br>
+    feedback:<br>
+    <input type="text" name="feedback" value="1000char">
+    <br>
+
+    <input type="submit" value="Submit">
+
+
+<!--
+<form action="/api/v1/reservations/create/" method="post">
+    bikeID:<br>
+    <input type="number" name="bikeID" value="0-250">
+    <br>
+    userID:<br>
+    <input type="number" name="userID" value="0-50">
+    <br>
+    timeFrom:<br>
+    <input type="datetime-local" name="timeFrom">
+    <br>
+    timeUntil:<br>
+    <input type="datetime-local" name="timeUntil">
+    <br>
+    destination:<br>
+    <input type="number" name="destination" value="0-20">
+    <br>
+    routeTaken:<br>
+    <input type="text" name="routeTaken" value="75char">
+    <br>
+    status:<br>
+    <select name="status">
+        <option value="reserved">reserved</option>
+        <option value="active">active</option>
+        <option value="cancelled">cancelled</option>
+        <option value="ended">ended</option>
+    </select>
+    <br>
+    score:<br>
+    <input type="number" name="score" value="0-5">
+    <br>
+    feedback:<br>
+    <input type="text" name="feedback" value="1000char">
+    <br>
+
+    <input type="submit" value="Submit">
+</form>-->
+
+
+</body>
+</html>
+
+</html>

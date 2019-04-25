@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Wheelz</title>
+    <meta name="author" content="Achlieve Prow">
+    <meta name="description" content="bike share system">
+    <meta name="keywords" content="bikes, travel">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script type="text/javascript" src="scripts/tab.js"></script>
+    <script type="text/javascript" src="scripts/slides.js"></script>
+    <script type="text/javascript" src="scripts/hidetabs.js"></script>
+    <script type="text/javascript" src="scripts/googleMain.js"></script>
+
+<!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  </head>
+
+  <body onload="callMaker()">
+
+    <header>
+
+            <img src="img/logo_transparent.png" alt="logo" class="center"/>
+
+    </header>
+
+    <div class="row">
+
+      <div class="column left" style="background-color:white;">
+      </div>
+
+<!-- main column starts here -->
+      <div class="column middle" style="background-color:#c6f1e7;">
+  <!-- tab links -->
+        <div class="tab">
+          <button class="tablinks" onclick="openTab(event, 'Home')" style="color:#145244; font-weight:bold;">Home</button>
+          <button class="tablinks" onclick="openTab(event, 'About Us')" style="color:#145244; font-weight:bold;">About Us</button>
+          <button class="tablinks" onclick="openTab(event, 'Booking')" style="color:#145244; font-weight:bold;">Booking</button>
+          <button class="tablinks" onclick="openTab(event, 'Get Support')" style="color:#145244; font-weight:bold;">Get Support</button>
+          <button class="tablinks" onclick="openTab(event, 'Booking History')" style="color:#145244; font-weight:bold;">Booking History</button>
+          <button class="tablinks" onclick="openTab(event, 'Operator')" style="color:#145244; font-weight:bold;">Operator</button>
+          <button class="tablinks" onclick="openTab(event, 'Management Portal')" style="color:#145244; font-weight:bold;">Management Portal</button>
+
+          <button class="tablinks" onclick="openTab(event, 'Login')" style="float:right; color:#145244; font-weight:bold;">Login</button>
+
+
+        </div>
+  <!-- tab content -->
+        <div id="Home" class="tabcontent" style="display:block">
+          <h3>Wheelz Homepage</h3>
+          <div class="slideshow">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img src="img/women_cycling.jpeg" style="width:100%;height:390px;border-radius:5px;" >
+              <div class="text">Woman Cycling</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img src="img/guy_cycling.jpg" style="width:100%;height:390px;border-radius:5px;">
+              <div class="text">Dood on a Bike</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 3</div>
+              <img src="img/group_cycling.png" style="width:100%;height:390px;border-radius:5px;">
+              <div class="text">Group Cycling</div>
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <br>
+
+        </div>
+
+          <div class="elements">
+            <div class="element1">
+				      <h3>Affordable Banking</h3>
+				      <img src="img/pound.png" style="margin-left:5%;margin-right:5%;width:90%;height:53%;border-radius:5px;">
+				      <p>With Wheelz, our services come at low prices, allowing user's to take advantage of the great outdoors.</p>
+			      </div>
+            <div class="element2">
+				      <h3>Any Time</h3>
+				      <img src="img/clock.png" style="margin-left:5%;margin-right:5%;width:90%;height:53%;border-radius:5px;">
+				      <p>Wheelz is available all day, everyday, 24/7, allowing even the busiest of user's to find some time in their day.</p>
+			      </div>
+            <div class="element3">
+				      <h3>Any Place</h3>
+				      <img src="img/grass.png" style="margin-left:5%;margin-right:5%;width:90%;height:53%;border-radius:5px;">
+				      <p>Regardless of where you are in the city, Wheelz will have a stop nearby for you.</p>
+			      </div>
+          </div>
+
+      </div>
+
+        <div id="About Us" class="tabcontent">
+          <h3>About Wheelz</h3>
+
+          <div class="about">
+            <div class="abtimg">
+              <img src="img/about_img.png" style="width:100%;height:600px;border-radius:5px;">
+            </div>
+            <div class="content">
+              <h5>About Us</h5>
+              <div class="abttext">We are AP Systems; a group of students from Heriot-Watt University who design bespoke systems. We created Wheelz to make bike sharing easy. Please browse this website as you please and download our app to book a bike!</div>
+              <button class="button1"> Download App </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="Booking" class="tabcontent">
+          <h3>Booking</h3>
+          <div class="booking">
+            <div class="bookcontent">
+              <h6>How to Book?</h6>
+              <div class="booktext">Our App is the easiest way to book!<br></br>
+              We know our customers want to book their bikes at the click of their fingers. That's why we made an App! Always on your phone, never more than a couple taps away from booking your first bike with us. Please download it on the Play Store via the button located below!</div>
+              <button class="button1"> Download App </button>
+            </div>
+            <div class="bookimg">
+              <img src="img/book_img.png" style="width:100%;height:600px;border-radius:5px;">
+            </div>
+          </div>
+        </div>
+
+        <div id="Get Support" class="tabcontent">
+          <h3>Get Support</h3>
+          <div class="support">
+            <div class="suppform" align="center">
+              <form action="/action_page.php">
+                <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+                <br></br>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <br></br>
+                <input type="email" id="email" name="email" placeholder="Your email address..">
+                <br></br>
+                <textarea id="subject" name="subject" placeholder="Ask a question.." style="height:200px"></textarea>
+                <br></br>
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div id="Booking History" class="tabcontent">
+          <h3>Booking History</h3>
+          
+          <div class="history">
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+            <div class="history_content">
+              <div class="history_text">
+                Booking Number: 1234 <br> Date: 24/07/2019 <br> Dock: 4
+              </div>
+              <div class="history_text">
+                Name: John Smith <br> Username: smithjohn89 <br> Previous Bookings: 55
+              </div>
+              <div class="history_text">
+                Duration: 2 Hours <br> Price: £20 <br> Extras: n/a
+              </div>
+            </div>
+          </div>
+          <div class="history_buttons" align="center">
+            <button class="button2"> Today </button>
+            <button class="button2">  All  </button>
+            <button class="button2"> Oldest </button>
+            <button class="button2"> Newest </button>
+          </div>
+        </div>
+
+        <div id="Operator" class="tabcontent">
+            <h3>Operator</h3>
+          <div class="operator">
+            <div id="containerdiv">
+              <div id="map"></div>
+              <div id="legend"><h3>Legend</h3></div>
+            </div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACiXMw6_lBO0vBNnBnNMOygia46o1Qvpw&callback=initMap">
+            </script>
+            <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+            </script>
+
+            <div class="operator_mod">
+              
+              <div class="mods">
+                <div class="mod">
+                  <h1>Dock 1</h1>
+                  <div class="bikes">3</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 2</h1>
+                  <div class="bikes">6</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 3</h1>
+                  <div class="bikes">7</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+              </div>
+              <div class="mods">
+                <div class="mod">
+                  <h1>Dock 4</h1>
+                  <div class="bikes">4</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 5</h1>
+                  <div class="bikes">8</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 6</h1>
+                  <div class="bikes">4</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+              </div>
+              <div class="mods">
+                <div class="mod">
+                  <h1>Dock 7</h1>
+                  <div class="bikes">10</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 8</h1>
+                  <div class="bikes">5</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+                <div class="mod">
+                  <h1>Dock 9</h1>
+                  <div class="bikes">4</div>
+                  <form>
+                      <input type="number" name="bikecount" placeholder="bikes" min="1" required="required">
+                      <input type="number" name="dock" placeholder="dock" min="1" max="9" required="required">
+                      <input type="submit" name="confirm" value="+">
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+
+
+
+
+        </div>
+
+        <div id="Management Portal" class="tabcontent">
+          <h3>Management Portal</h3>
+          
+
+            <div class="management">
+              <h3>24 Hour Figures</h3>
+              <div class="manage_elements">
+                <div class="manage1">
+                  <div class="man">
+                    <div class="part">Bookings</div>
+                    <div class="stats">444</div>
+                  </div>
+                </div>
+                <div class="manage2">
+                  <div class="man">
+                    <div class="part">Active Users</div>
+                    <div class="stats">44</div>
+                  </div>
+                </div>
+                <div class="manage3">
+                  <div class="man">
+                    <div class="part">Damaged Bikes</div>
+                    <div class="stats">4</div>
+                  </div>
+                </div>
+              </div>
+              <div class="manage_elements">
+                <div class="manage1">
+                  <div class="man">
+                    <div class="part">Avg Session Duration (hrs)</div>
+                    <div class="stats">444</div>
+                  </div>
+                </div>
+                <div class="manage2">
+                  <div class="man">
+                    <div class="part">Earnings (£)</div>
+                    <div class="stats">44</div>
+                  </div>
+                </div>
+                <div class="manage3">
+                  <div class="man">
+                    <div class="part">Most Active Dock</div>
+                    <div class="stats">9</div>
+                  </div>
+                </div>
+              </div>
+
+                <div align="center">
+                  <a href="week.html" target="_blank"><button class="button2"> 1 Week </button></a>
+                  <a href="all.html" target="_blank"><button class="button2"> All Time </button></a>
+                </div>
+
+
+
+          </div>
+
+        </div>
+
+        <div id="Login" class="tabcontent">
+          <h3>Login</h3>
+           <div class="login" align="center">
+              <div class="container">
+                <form action="includes/login.php" method="post">
+                  <div class="row2">
+                    <h3 style="text-align:center">Enter login details...</h3>
+                      <form>
+                      <input type="email" name="email" placeholder="Email" required id="email">
+                      <input type="password" name="password" placeholder="Password" required  id="password">
+                      <input type="submit" name="submit" value="Login">
+                      </form>
+                  </div>
+
+                  </div>
+                </form>
+              </div>
+          </div>
+
+      </div>
+<!-- main column ends here -->
+
+      <div class="column right" style="background-color:white;">
+
+      </div>
+
+    </div>
+
+    <footer>
+
+      <div class="social" align="center">
+        <a href="#" class="fa fa-facebook"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-twitter"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-google"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-linkedin"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-youtube"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-instagram"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-pinterest"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-android"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-tumblr"style="border-radius:5px;"></a>
+        <a href="#" class="fa fa-reddit"style="border-radius:5px;"></a>
+      </div>
+
+    </footer>
+
+<script>
+  showSlides(slideIndex);
+</script>
+
+  </body>
+
+</html>

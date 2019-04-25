@@ -1,0 +1,1146 @@
+<style>
+
+body {
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	min-zoom: 0.60;
+}
+
+.hide{
+	display: none;
+}
+
+@viewport {
+  zoom: 1.0;
+  min-zoom: 1.0;
+  max-zoom: 1.0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+/* nav bar style */
+}
+
+li {
+	float: left;
+/* nav bar elements */
+}
+
+li a {
+	display: block;
+	color: #145244;
+	text-align: center;
+	text-decoration: none;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-weight:bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+/* nav bar links */
+}
+
+li a:hover:not(.open_tab) {
+	background-color: #46d2b2;
+/* change background color of buttons on hover but not the open tab */
+}
+
+.open_tab {
+	background-color: #28a487;
+/* nav bar open page change style */
+}
+
+.controler {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.selector {
+	list-style-type: none;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	width: 26.5%;
+/* selection bar style */
+}
+
+.selection {
+	float: left;
+	width:33.3%;
+/* selection bar elements */
+}
+
+.selection a {
+	display: block;
+	color: #145244;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 10px;
+	transition: 0.3s;
+	font-weight:bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+/* selection bar links */
+}
+
+.selection a:hover:not(.open_tab) {
+	background-color: #46d2b2;
+/* change background color of buttons on hover but not the open selection */
+}
+
+
+#containerdiv {
+	padding: 4px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+
+}
+#map {
+	height: 500px;
+	width: 100%;
+	border: 4px solid #145244;
+	border-radius: 5px;
+}
+
+#legend {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #fff;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid #145244;
+	border-radius: 5px;
+}
+
+#legend h3 {
+	margin-top: 0;
+}
+#legend img {
+	vertical-align: middle;
+	padding-left: 20px;
+}
+
+
+.column {
+	float: left;
+	padding: 10px;
+	height: 1000px;
+/* creates three unequal columns that floats next to each other */
+}
+
+.left, .right {
+	width: 20%;
+/* border columns */
+}
+
+.middle {
+	width: 60%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+/* main column of page */
+}
+
+.middlex {
+	width: 60%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	height: auto;
+/* main column of page for operator page*/
+}
+
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+/* clear floats after the columns */
+}
+
+.center {
+	width: 200px;
+	height: 200px;
+	max-width: 165px;
+	max-height: 165px;
+	margin-left: 20%;
+/* logo alignment */
+}
+
+
+
+.tab {
+	overflow: hidden;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+/* style the tab */
+}
+
+
+.tab button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+/* style the buttons that are used to open the tab content */
+}
+
+
+.tab button:hover {
+	background-color: #46d2b2;
+/* change background color of buttons on hover */
+}
+
+
+.tab button.active {
+	background-color: #28a487;
+/* create an active/current tablink class */
+}
+
+
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border-top: none;
+/* style the tab content */
+}
+
+h1 {
+	color: #145244;
+	font-size: 13px;
+	text-align: center;
+}
+
+
+h3 {
+	color: #145244;
+	font-weight: bold;
+	text-align: center;
+/* title for each tab */
+}
+
+h6 {
+	color: #145244;
+	font-weight: bold;
+	text-align: center;
+/* title for each tab */
+}
+
+
+.slideshow {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 400px;
+/* slideshow div on homepage */
+}
+
+.slideshow-container {
+	position: relative;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+/* slideshow container */
+}
+
+.mySlides {
+	display: none;
+/* hide the images by default */
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: #145244;
+	text-shadow: -1px 0 #c6f1e7, 0 1px #c6f1e7, 1px 0 #c6f1e7, 0 -1px #c6f1e7;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+/* next and previous buttons */
+}
+
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+/* position the next button to right */
+}
+
+.prev:hover, .next:hover {
+	background-color: #28a487;
+/* on-hover change background color */
+
+}
+
+.text {
+	color: #145244;
+	text-shadow: -1px 0 #c6f1e7, 0 1px #c6f1e7, 1px 0 #c6f1e7, 0 -1px #c6f1e7;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
+/* slideshow caption text */
+}
+
+.numbertext {
+	color: #145244;
+	text-shadow: -1px 0 #c6f1e7, 0 1px #c6f1e7, 1px 0 #c6f1e7, 0 -1px #c6f1e7;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
+/* slide number text (1/3 etc) */
+}
+
+
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+p {
+	color:#145244;
+	text-align: center;
+	margin-left: 5%;
+	margin-right: 5%;
+/* format text in each element */
+}
+
+
+.element1 {
+	float: left;
+	width: 30%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 350px;
+	margin-top: 40px;
+	padding: inherit;
+	overflow: auto;
+
+
+/* left div under slideshow on homepage */
+}
+
+.element2 {
+	float: left;
+	width: 30%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 350px;
+	margin-top: 40px;
+	margin-left: 5%;
+		overflow: auto;
+/* middle div under slideshow on homepage */
+}
+
+.element3 {
+	float: left;
+	width: 30%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 350px;
+	margin-top: 40px;
+	margin-left: 5%;
+		overflow: auto;
+/* right div under slideshow on homepage */
+}
+
+
+.about {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 600px;
+/* about div on about wheelz page */
+}
+
+.abtimg {
+	float: left;
+	width: 50%;
+/* img div for about page */
+}
+
+.content {
+	float: left;
+	text-align: center;
+	height: 600px;
+	width: 50%;
+/* text div for about page */
+}
+
+.abttext {
+	color: #145244;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+/* paragraph text formatting for about page */
+}
+
+h5 {
+	font-size: 30px;
+	color: #145244;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 45%;
+/* header formatting for about page */
+}
+
+
+.button1 {
+	background-color: #145244;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	margin-top: 5%;
+/* download button */
+}
+
+.button1:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+/* download button hover effect */
+}
+
+.button2 {
+	background-color: #145244;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+/* operational history buttons */
+}
+
+.button2:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+/* operational history buttons hover effect */
+}
+
+.booking {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 600px;
+/* booking page div */
+}
+
+.bookimg {
+	float: left;
+	width: 60%;
+/* img div for about page */
+}
+
+.bookcontent {
+	float: left;
+	text-align: center;
+	height: 600px;
+	width: 40%;
+/* text div for about page */
+}
+
+.booktext {
+	color: #145244;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+/* paragraph text formatting for about page */
+}
+
+h6 {
+	font-size: 30px;
+	color: #145244;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 40%;
+/* header formatting for about page */
+}
+
+
+.support {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 600px;
+/* support page div */
+}
+
+.suppform {
+	margin-left: 5%;
+	margin-top: 5%;
+	margin-right: 5%;
+/* support page form div */
+}
+
+
+
+.map {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 400px;
+/* map div on operator page */
+}
+
+
+
+.container {
+	position: relative;
+	border-radius: 0px;
+	background-color: #98e6d4;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	width: 50%;
+	margin-top: 20%;
+/* style the login container */
+}
+
+textarea {
+	resize: none;
+}
+
+input,
+textarea,
+.btn {
+	width: 40%;
+	padding: 12px;
+	border: none;
+	border-radius: 5px;
+	margin: 5px 0;
+	opacity: 0.85;
+	display: inline-block;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 17px;
+	line-height: 20px;
+	text-decoration: none; /* remove underline from anchors */
+/* style inputs and link buttons */
+}
+
+input:hover,
+textarea:hover,
+.btn:hover {
+	opacity: 1;
+}
+
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+textarea:focus {
+	background-color: #46d2b2;
+	border: 3px solid #28a487;
+}
+
+input[type=submit] {
+	background-color: #28a487;
+	color: white;
+	cursor: pointer;
+	margin-bottom: 20px;
+/* style the submit button */
+}
+
+input[type=submit]:hover {
+	opacity: 1;
+}
+
+
+.history {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 750px;
+	overflow-y: scroll; /* scroll for browsing through history */
+	margin-top: 10px;
+/* booking history div on about wheelz page */
+}
+
+/* start for booking history scroll styling */
+.history::-webkit-scrollbar {
+	width: 15px; /* width of scroll bar */
+}
+
+.history::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey;
+	border-radius: 10px;
+/* scroll bar stlye */
+}
+
+.history::-webkit-scrollbar-thumb {
+	background: #145244;
+	border-radius: 10px;
+/* scroll handle style */
+}
+
+.history::-webkit-scrollbar-thumb:hover {
+	background: #051310;
+/* on-hover scroll handle style */
+}
+/* end for booking history scroll styling */
+
+.history_content {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: 90px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+/* history content inside scrolling div */
+}
+
+.history_buttons {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 100px;
+	margin-top: 15px;
+/* operational buttons under history content */
+}
+
+.operator {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 1125px;
+	overlow: hidden;
+	margin-bottom: auto;
+/* operator content div */
+}
+
+.operator_mod {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: auto;
+	width: 98%;
+	margin-left: 1%;
+	margin-top: 1%;
+/* operator page dock mod div */
+}
+
+.dock_contoler {
+	width: 98%;
+	margin-left: 1%;
+	margin-right: 1%;
+	height: 00px;
+/* operator page dock control container div */
+}
+
+.dock_selector {
+	float: left;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	width: 200px;
+	height: 110px;
+	margin-top: 5px;
+	margin-left: 1%;
+/* dock selector container */
+}
+
+.dock_choose {
+	margin-left: 50px;
+	color: #145244;
+	background-color: #c6f1e7;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	height: auto;
+}
+
+.dock_info {
+	float: left;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	margin-left: 1%;
+	overflow: hidden;
+/* selected dock info container */
+}
+
+.dock_information {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: 158px;
+	margin-left: 5px;
+	margin-right: 5px;
+/* dock info within info container */
+}
+
+.dock_modification {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: auto;
+	margin-left: 5px;
+	margin-right: 5px;
+/* dock info modifyer within info container */
+}
+
+.mod_stuff {
+	position: relative;
+	clear: both;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 41px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+/* dock info individual stats */
+}
+
+.dock_div {
+	position: relative;
+	clear: both;
+	width: 100%;
+	height: auto;
+}
+
+.dock_bikes {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.dock_gear {
+	float: right;
+	width: 50%;
+	height: 100%;
+}
+
+.used_stuff {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+/* dock info individual stats */
+}
+
+.used_stuff p {
+	line-height: 0px;
+	margin-top: 10px;
+}
+
+.mod_stuff p {
+	margin-top: 10px;
+	margin-left: 2px;
+}
+
+.title_element {
+	float: left;
+	height: 100%;
+}
+
+.form_element {
+	float: right;
+	margin-right: 5px;
+	height: 100%;
+}
+
+.mod_stuff input[type=number] {
+	margin-top: 1px;
+	width: 70px;
+	height: 35px;
+}
+
+.mod_stuffx {
+	height: auto;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 5px;
+/* dock info individual stats */
+}
+
+.mod_stuffx input[type=submit] {
+	width: 100%;
+	height: 80%;
+	margin: 0px 0px 0px 0px;
+}
+
+.available_container {
+	float: right;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	margin-right: 9px;
+/* container div for available info on operator page */
+}
+
+.available_stuff {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+/* container within available container for bike count */
+}
+
+.available_stuff p {
+	line-height: 0px;
+	margin-top: 10px;
+	font-size: 12px;
+}
+
+.mod {
+	float: left;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	width: 32%;
+	height: 97px;
+	margin-top: 5px;
+	margin-left: 1%;
+/* operator page dock mod div individual docks */
+}
+
+.management {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 750px;
+/* management portal content div */
+}
+
+.manage_elements {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.manage1,
+.manage2,
+.manage3 {
+	float: left;
+	width: 30%;
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: 100px;
+	margin-top: 20px;
+	margin-left: 2.5%;
+	text-align: center;
+/* manager element 1, 2 and 3 */
+}
+
+.man {
+	width: 100%;
+	height: 100%;
+}
+
+.part {
+	float: left;
+	width: 50%;
+	height: 80%;
+	margin-top: 4%;
+	margin-right: 7%;
+	margin-bottom: 4%;
+	margin-left: 3%;
+	text-align: center;
+	align-content: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #145244;
+    font-size: 100%;
+    /*font-size: 2vmin;*/ /* scale text font */
+/* text on manager objects */
+}
+
+
+.stats {
+	float: left;
+	width: 30%;
+	border: 2px solid #145244;
+	border-radius: 5px;
+	margin-top: 4%;
+	margin-right: 3%;
+	margin-bottom: 4%;
+	height: 80%;
+	text-align: center;
+	align-content: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #145244;
+    font-size: auto;
+    font-size: 2vmin; /* scale stat font */
+/* stats for manager page */
+}
+
+.bikes {
+	float: left;
+	width: 20%;
+	border: 2px solid #145244;
+	border-radius: 5px;
+	margin-left: 3%;
+	margin-bottom: 4%;
+	margin-right: 10px;
+	height: 60%;
+	text-align: center;
+	align-content: center;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #145244;
+    font-size: auto;
+    font-size: 2vmin; /* scale stat font */
+/* bike counts for operator page */
+}
+
+.popular {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #98e6d4;
+	height: 300px;
+	width: 50%;
+	margin-top: 5%;
+	margin-left: 24.5%;
+/* popular docks main div */
+}
+
+.history_text {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 105px;
+	color: #145244;
+	font-size: 18px;
+	float: left;
+/* booking history text alignment */
+}
+
+.pdf-link-container {
+	width:50%;
+	margin: 0 auto;
+	padding-top: 30px;
+
+
+}
+
+.pdf-link-container2 {
+	width:50%;
+	margin: 0 auto;
+	text-align: center;
+
+
+}
+
+.pdf-link-container2 a {
+	text-decoration: none;
+	font-weight:bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: black;
+	font-size: 120%;
+
+
+}
+
+
+
+
+footer {
+	border: 1px solid #145244;
+	border-style: dotted;
+	border-radius: 5px;
+	background-color: #c6f1e7;
+	height: 120px;
+	margin-top: 20px;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 20px;
+	text-align: center;
+/* footer for all tabs */
+}
+
+.social {
+	margin-top: 2%;
+	margin-bottom: 2%;
+/* social media button div */
+}
+
+.fa {
+	padding: 20px;
+	font-size: 30px;
+	width: 50px;
+	text-align: center;
+	text-decoration: none;
+	margin: auto;
+	height: auto;
+	width: auto;
+/* social media buttons */
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+	background: #3B5998;
+	color: white;
+}
+
+.fa-twitter {
+	background: #55ACEE;
+	color: white;
+}
+
+.fa-google {
+	background: #dd4b39;
+	color: white;
+}
+
+.fa-linkedin {
+	background: #007bb5;
+	color: white;
+}
+
+.fa-youtube {
+	background: #bb0000;
+	color: white;
+}
+
+.fa-instagram {
+	background: #125688;
+	color: white;
+}
+
+.fa-pinterest {
+	background: #cb2027;
+	color: white;
+}
+
+.fa-android {
+	background: #a4c639;
+	color: white;
+}
+
+.fa-tumblr {
+	background: #2c4762;
+	color: white;
+}
+
+.fa-reddit {
+	background: #ff5700;
+	color: white;
+}
+
+
+/*hide role-specific div html*/
+div.hidden {
+display: none;
+
+}
+
+
+
+</style>

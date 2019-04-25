@@ -1,0 +1,18 @@
+-- This file contains the loading commands for importing csv's to the database
+-- It also contains other handy bits and bobs for the DB Administrator. This is not designed to be official documentation
+-- but is included primarily to show how data was loaded in
+
+mysqlimport -u achleive -p --local --delete --fields-terminated-by=',' --lines-terminated-by='\n' achleive Logins.csv Account.csv Pass.csv Dock.csv Bike.csv Reservation.csv Fault.csv Gear.csv Groups.csv
+
+mysqlimport -u achleive -p --local --delete --fields-terminated-by=',' --lines-terminated-by='\n' achleive
+
+The Omni Center,The National Archives, Haymarket Train Station,Grassmarket,Bristo Square,The Meadows,Kings Buildings,The Scottish Parliament,Portobello Beach,The Royal Botanical Gardens,Ocean Terminal,Scottish Modern Art Gallery,Scottish National Gallery,National Museum Of Scotland,Kings Buildings,Fountain Park,Calton Hill,Lochend Park,Heriot-Watt University,Murrayfield Stadium
+
+INSERT INTO Reservation (resID, createdTime, bikeType, pickupDock, userID, timeFrom)
+VALUES
+('4441', '06/05/2019 13:44', 'standard',NULL,NULL,1,'yes');
+
+insert into Logins (email, password) VALUES ('cw31@hw.ac.uk','$argon2i$v=19$m=1024,t=2,p=2$c29tZXNhbHQ$hpbgIm+coN/QaUsWrmlAlec++mbBAOf6h0buffFXpeM');
+
+
+SELECT * FROM `Dock` WHERE (`latitude` >= 0 AND `latitude` <= 100) AND (`longitude` >= -50 AND `longitude` <= 50);

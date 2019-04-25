@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("#div1").load("demo_test.txt");
+            });
+        });
+    </script>
+    -->
+</head>
+<body>
+
+<form action="/api/v1/accounts/create/" method="post">
+    fname:<br>
+    <input type="text" name="fname">
+    <br>
+    lname:<br>
+    <input type="text" name="lname">
+    <br>
+    email:<br>
+    <input type="email" name="email">
+    <br>
+    dob:<br>
+    <input type="date" name="dob">
+    <br>
+
+    password:<br>
+    <input type="password" name="password">
+    <br>
+    <!--
+    postcode:<br>
+    <input type="text" name="postcode">
+    <br>
+    cardNo:<br>
+    <input type="text" name="cardNo">
+    <br>
+    -->
+    type:<br>
+    <select name="type">
+        <option value="user">user</option>
+        <option value="operator">operator</option>
+        <option value="manager">manager</option>
+    </select>
+    <br>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
+
+</html>
